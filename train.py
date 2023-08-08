@@ -17,7 +17,24 @@ def calc_acc(logits, labels):
         return correct.item() / labels.shape[0]
     else:
         return f1_score(labels, logits > 0, average='micro')
+# def calc_acc(logits, labels):
 
+#     if labels.dim() == 1:
+#         return int(logits.argmax(dim=-1).eq(labels).sum()) / labels.size(0)
+#     else:
+#         y_pred = logits > 0
+#         y_true = labels > 0.5
+
+#         tp = int((y_true & y_pred).sum())
+#         fp = int((~y_true & y_pred).sum())
+#         fn = int((y_true & ~y_pred).sum())
+
+#         try:
+#             precision = tp / (tp + fp)
+#             recall = tp / (tp + fn)
+#             return 2 * (precision * recall) / (precision + recall)
+#         except ZeroDivisionError:
+#             return 0.
 
 @torch.no_grad()
 def evaluate_induc(name, model, g, mode, result_file_name=None):

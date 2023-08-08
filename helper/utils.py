@@ -2,7 +2,7 @@ import os
 
 import scipy
 import dgl
-from dgl.data import RedditDataset, YelpDataset
+from dgl.data import RedditDataset, YelpDataset, FlickrDataset
 from dgl.distributed import partition_graph
 from helper.context import *
 from ogb.nodeproppred import DglNodePropPredDataset
@@ -37,6 +37,8 @@ def load_data(args):
     if args.dataset == 'reddit':
         data = RedditDataset(raw_dir=args.data_path)
         g = data[0]
+    elif args.dataset == 'ogbn-arxiv':
+        g = load_ogb_dataset('ogbn-arxiv', args.data_path)
     elif args.dataset == 'ogbn-products':
         g = load_ogb_dataset('ogbn-products', args.data_path)
     elif args.dataset == 'ogbn-papers100m':
@@ -54,6 +56,9 @@ def load_data(args):
         scaler.fit(feats[g.ndata['train_mask']])
         feats = scaler.transform(feats)
         g.ndata['feat'] = torch.tensor(feats, dtype=torch.float)
+    elif args.dataset == 'flickr':
+        data = FlickrDataset(raw_dir=args.data_path)
+        g = data[0]
     else:
         raise ValueError('Unknown dataset: {}'.format(args.dataset))
 

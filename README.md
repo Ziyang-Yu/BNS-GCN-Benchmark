@@ -7,6 +7,11 @@ Cheng Wan<sup>\*</sup> (Rice University), Youjie Li<sup>\*</sup> (UIUC), Ang Li 
 Accepted at MLSys 2022 [[Paper](https://arxiv.org/abs/2203.10983) | [Video](https://youtu.be/kzI0ksASFQY) | [Slide](https://mlsys.org/media/mlsys-2022/Slides/2178.pdf) | [Docker](https://hub.docker.com/r/cheng1016/bns-gcn) | [Sibling](https://github.com/RICE-EIC/PipeGCN)]
 
 
+# Development with Docker
+```bash
+ docker run --gpus all -it  -v ~/BNS-GCN:/root/SAT cheng1016/bns-gcn
+```
+Then use sftp to connect to ~/BNS-GCN in remote server to develop
 
 ## Directory Structure
 

@@ -10,4 +10,5 @@ python main.py \
   --n-hidden 256 \
   --log-every 10 \
   --inductive \
-  --use-pp
+  --use-pp \
+  --data-path /dev
